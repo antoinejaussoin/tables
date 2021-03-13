@@ -1,8 +1,8 @@
 # This must be run with the Docker context set to the root folder of the repository
 # (the one with the yarn.lock file)
 
-# FROM --platform=$BUILDPLATFORM node:15-alpine as Node
-FROM node:15-alpine as Node
+FROM --platform=$BUILDPLATFORM node:15-alpine as Node
+# FROM node:15-alpine as Node
 
 ENV NODE_ENV=production
 
@@ -20,6 +20,7 @@ RUN yarn --network-timeout 1000000 install
 
 COPY --chown=node:node ./src ./src
 COPY --chown=node:node ./public ./public
+COPY --chown=node:node ./tsconfig.json ./tsconfig.json
 
 RUN yarn build
 
