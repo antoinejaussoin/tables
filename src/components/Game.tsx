@@ -7,21 +7,32 @@ interface GameProps {
   table: () => number;
 }
 
+let francais: SpeechSynthesisVoice | null = null;
+
+// speechSynthesis.addEventListener("voiceschanged", () => {
+
+// });
+
 export default function Game({ table }: GameProps) {
   const [value2, setValue2] = createSignal(getRandomNumber(12));
   const [result, setResult] = createSignal<number | null>(null);
+
+  const voices = speechSynthesis.getVoices();
+  voices.forEach((voice) => console.log(voice.name, voice.lang));
+  francais = voices.find((v) => v.lang === "fr-FR")!;
 
   function handleCheck() {
     if (table() * value2() === result()) {
       console.log("You are right!");
       const utterance = new SpeechSynthesisUtterance(
-        "You are right Apolline, " +
+        "Tu as raison Apolline ! " +
           table() +
-          " times " +
+          " fois " +
           value2() +
-          " equals " +
+          " égale " +
           result()
       );
+      utterance.voice = francais;
       speechSynthesis.speak(utterance);
       setValue2(getRandomNumber(12));
       setResult(null);
