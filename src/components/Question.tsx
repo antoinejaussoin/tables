@@ -1,9 +1,9 @@
 import { styled } from "solid-styled-components";
 
 interface QuestionProps {
-  first: number;
-  second: number;
-  result: number;
+  first: () => number;
+  second: () => number;
+  result: () => number | null;
 }
 
 export default function Question({ first, second, result }: QuestionProps) {
