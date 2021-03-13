@@ -19,7 +19,7 @@ export default function Game({ table }: GameProps) {
 
   const voices = speechSynthesis.getVoices();
   voices.forEach((voice) => console.log(voice.name, voice.lang));
-  francais = voices.find((v) => v.lang === "fr-FR")!;
+  francais = voices.find((v) => v.lang === "fr-CA")!;
 
   function handleCheck() {
     if (table() * value2() === result()) {
