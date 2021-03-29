@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 interface QuestionProps {
   first: number;
   second: number;
@@ -8,13 +6,8 @@ interface QuestionProps {
 
 export default function Question({ first, second, result }: QuestionProps) {
   return (
-    <Container>
+    <div className="font-thin text-5xl my-4">
       {first} x {second} = {result}
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div`
-  font-weight: 100;
-  font-size: 4em;
-`;

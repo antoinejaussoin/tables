@@ -1,5 +1,3 @@
-import styled from "styled-components";
-
 interface NumberPickerProps {
   onPick(result: number): void;
   onCheck(): void;
@@ -14,40 +12,45 @@ export default function NumberPicker({
   onPick,
 }: NumberPickerProps) {
   return (
-    <Container>
+    <div className="flex">
       {digits.map((d) => (
-        <Digit onClick={() => onPick(d)}>{d}</Digit>
+        <Digit number={d} onClick={() => onPick(d)} />
       ))}
-      <Clear onClick={() => onClear()}>X</Clear>
-      <Check onClick={() => onCheck()}>V</Check>
-    </Container>
+      <Digit
+        number="X"
+        onClick={() => onClear()}
+        color1="from-red-500"
+        color2="to-red-700"
+      />
+      <Digit
+        number="V"
+        onClick={() => onCheck()}
+        color1="from-green-500"
+        color2="to-green-700"
+      />
+    </div>
   );
 }
 
-const Container = styled.div`
-  display: flex;
-`;
+interface DigitProps {
+  number: number | string;
+  color1?: string;
+  color2?: string;
+  onClick: () => void;
+}
 
-const Digit = styled.div`
-  padding: 20px;
-  border: 1px solid #03a9f4;
-  background-color: #80d8ff;
-  border-radius: 5px;
-  margin: 5px;
-  width: 40px;
-  height: 40px;
-  font-size: 3em;
-  font-weight: 100;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-`;
-const Clear = styled(Digit)`
-  border: 1px solid #ff1744;
-  background-color: #ff8a80;
-`;
-const Check = styled(Digit)`
-  border: 1px solid #00e676;
-  background-color: #b9f6ca;
-`;
+function Digit({
+  number,
+  onClick,
+  color1 = "from-blue-500",
+  color2 = "to-blue-700",
+}: DigitProps) {
+  return (
+    <div
+      className={`bg-gradient-to-r ${color1} ${color2} cursor-pointer p-4 rounded-md w-12 h-12 m-1 flex items-center justify-center text-white text-3xl`}
+      onClick={onClick}
+    >
+      {number}
+    </div>
+  );
+}

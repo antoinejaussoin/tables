@@ -1,5 +1,4 @@
 import { Tables } from "../constants";
-import styled from "styled-components";
 
 interface TablePickerProps {
   current: number;
@@ -8,14 +7,16 @@ interface TablePickerProps {
 
 export default function TablePicker({ current, onSelect }: TablePickerProps) {
   return (
-    <Container>
+    <div className="flex">
       {Tables.map((table) => (
-        <TableButton onClick={() => onSelect(table)}>{table}</TableButton>
+        <div
+          key={table}
+          className="cursor-pointer p-4 rounded-md w-12 h-12 m-1 flex items-center justify-center text-black text-3xl border-gray-500 border-solid border-2"
+          onClick={() => onSelect(table)}
+        >
+          {table}
+        </div>
       ))}
-    </Container>
+    </div>
   );
 }
-
-const Container = styled.div``;
-
-const TableButton = styled.button``;
