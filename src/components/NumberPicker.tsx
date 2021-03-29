@@ -12,7 +12,7 @@ export default function NumberPicker({
   onPick,
 }: NumberPickerProps) {
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {digits.map((d) => (
         <Digit number={d} onClick={() => onPick(d)} />
       ))}

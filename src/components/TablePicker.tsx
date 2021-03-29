@@ -7,7 +7,7 @@ interface TablePickerProps {
 
 export default function TablePicker({ current, onSelect }: TablePickerProps) {
   return (
-    <div className="flex">
+    <div className="flex flex-wrap">
       {Tables.map((table) => (
         <div
           key={table}

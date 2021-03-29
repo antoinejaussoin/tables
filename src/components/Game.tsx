@@ -16,6 +16,7 @@ let francais: SpeechSynthesisVoice | null = null;
 export default function Game({ table }: GameProps) {
   const [value2, setValue2] = useState<number>(getRandomNumber(12));
   const [result, setResult] = useState<number | null>(null);
+  const [wrong, setWrong] = useState(false);
 
   const voices = speechSynthesis.getVoices();
   voices.forEach((voice) => console.log(voice.name, voice.lang));
@@ -23,7 +24,6 @@ export default function Game({ table }: GameProps) {
 
   function handleCheck() {
     if (table * value2 === result) {
-      console.log("You are right!");
       const utterance = new SpeechSynthesisUtterance(
         "Tu as raison Apolline ! " +
           table +
@@ -37,17 +37,22 @@ export default function Game({ table }: GameProps) {
       setValue2(getRandomNumber(12));
       setResult(null);
     } else {
-      console.log("Try again!");
+      const utterance = new SpeechSynthesisUtterance(
+        "Ce n'est pas ça! Recommence"
+      );
+      utterance.voice = francais;
+      speechSynthesis.speak(utterance);
+      setWrong(true);
     }
   }
 
   return (
     <div>
-      <Question first={table} second={value2} result={result} />
+      <Question first={table} second={value2} result={result} wrong={wrong} />
       <NumberPicker
         onPick={(n) => {
-          console.log("n: ", n, +(result + n.toString()));
           setResult(+((result || "") + n.toString()));
+          setWrong(false);
         }}
         onClear={() => setResult(null)}
         onCheck={handleCheck}
