@@ -21,6 +21,8 @@ RUN yarn --network-timeout 1000000 install
 COPY --chown=node:node ./src ./src
 COPY --chown=node:node ./public ./public
 COPY --chown=node:node ./tsconfig.json ./tsconfig.json
+COPY --chown=node:node ./tailwind.config.js ./tailwind.config.js
+COPY --chown=node:node ./postcss.config.js ./postcss.config.js
 
 RUN yarn build
 
