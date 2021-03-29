@@ -1,5 +1,5 @@
 import { Tables } from "../constants";
-import { styled } from "solid-styled-components";
+import styled from "styled-components";
 
 interface TablePickerProps {
   current: number;
@@ -16,6 +16,6 @@ export default function TablePicker({ current, onSelect }: TablePickerProps) {
   );
 }
 
-const Container = styled("div")``;
+const Container = styled.div``;
 
-const TableButton = styled("button")``;
+const TableButton = styled.button``;

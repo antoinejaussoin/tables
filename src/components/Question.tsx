@@ -1,9 +1,9 @@
-import { styled } from "solid-styled-components";
+import styled from "styled-components";
 
 interface QuestionProps {
-  first: () => number;
-  second: () => number;
-  result: () => number | null;
+  first: number;
+  second: number;
+  result: number | null;
 }
 
 export default function Question({ first, second, result }: QuestionProps) {
@@ -14,7 +14,7 @@ export default function Question({ first, second, result }: QuestionProps) {
   );
 }
 
-const Container = styled("div")`
+const Container = styled.div`
   font-weight: 100;
   font-size: 4em;
 `;

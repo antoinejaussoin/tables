@@ -1,4 +1,4 @@
-import { styled } from "solid-styled-components";
+import styled from "styled-components";
 
 interface NumberPickerProps {
   onPick(result: number): void;
@@ -24,11 +24,11 @@ export default function NumberPicker({
   );
 }
 
-const Container = styled("div")`
+const Container = styled.div`
   display: flex;
 `;
 
-const Digit = styled("div")`
+const Digit = styled.div`
   padding: 20px;
   border: 1px solid #03a9f4;
   background-color: #80d8ff;
