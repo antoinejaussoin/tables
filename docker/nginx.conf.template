@@ -22,8 +22,8 @@ server {
     add_header Cache-Control "no-store, no-cache, must-revalidate";
   }
 
-  location /static {
-    alias /usr/share/nginx/html/static/;
+  location /_next {
+    alias /usr/share/nginx/html/_next/;
     expires 1y;
     add_header Cache-Control "public";
     access_log off;
